@@ -143,7 +143,7 @@ const Header = () => {
             skills, design, business understanding.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-row sm:flex-row gap-4">
             <button
               style={{ fontFamily: "Epilogue", backgroundColor: "#ef6d58" }}
               className="font-bold text-white rounded-full flex items-center gap-2 px-6 py-3"
