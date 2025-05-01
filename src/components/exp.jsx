@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import digitalSide from "../assets/digitalSide.png";
 import Vortex from "../assets/Vortex.png";
 import TRAVELEXPLORER from "../assets/TRAVELEXPLORER.png";
 import FUZION from "../assets/FUZION.png";
 import MediaFury from "../assets/MediaFury.png";
 import expRightImage from "../assets/expRightImage.png";
+import SampleVideo_1280x720_1mb from "../assets/SampleVideo_1280x720_1mb.mp4";
 
 const ExperienceDesignAgency = () => {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <div className="bg-[#fdf0e9] py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -48,7 +59,10 @@ const ExperienceDesignAgency = () => {
               partner on the long run, and work as an extension of the
               merchant&apos;s team.
             </p>
-            <button style={{backgroundColor :"white"}} className="text-[#391400] bg-white px-6 py-3 mt-2 uppercase font-extrabold text-sm tracking-wide rounded shadow-md">
+            <button
+              style={{ backgroundColor: "white" }}
+              className="text-[#391400] bg-white px-6 py-3 mt-2 uppercase font-extrabold text-sm tracking-wide rounded shadow-md"
+            >
               About Us
             </button>
           </div>
@@ -112,29 +126,34 @@ const ExperienceDesignAgency = () => {
             {/* Video Thumbnail */}
             <div className="w-full md:w-1/2 relative">
               <div className="relative w-full h-64 md:h-80 rounded-md overflow-hidden shadow-md">
-                <img
-                  src="https://images.unsplash.com/photo-1603297631954-cda4ac633ee6"
-                  alt="Video Reel"
+                <video
+                  ref={videoRef}
+                  src={SampleVideo_1280x720_1mb}
                   className="w-full h-full object-cover"
+                  controls={isPlaying}
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="w-16 h-16 rounded-full border border-white bg-white bg-opacity-10 flex items-center justify-center">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                {!isPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button
+                      onClick={handlePlay}
+                      className="w-16 h-16 rounded-full border border-white bg-white bg-opacity-10 flex items-center justify-center"
                     >
-                      <path d="M6 4l10 6-10 6V4z" />
-                    </svg>
-                  </button>
-                </div>
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M6 4l10 6-10 6V4z" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
                 <div className="absolute bottom-2 left-2 bg-black text-white text-xs px-2 py-0.5 rounded">
                   1:45
                 </div>
               </div>
             </div>
 
-            {/* Text Section */}
             <div className="w-full md:w-1/2">
               <p className="uppercase text-sm text-[#e77c6d] tracking-widest mb-2">
                 Video Reel
